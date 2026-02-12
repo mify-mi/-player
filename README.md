@@ -1,48 +1,63 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>Typing Master Stage</title>
-<style>
-body {
-  background:#111;
-  color:#0f0;
-  font-family:monospace;
-  text-align:center;
-}
-#text {
-  font-size:28px;
-  margin:20px;
-  word-break:break-all;
-}
-.correct { color:#0f0; }
-.wrong { color:#f33; }
-#stage { font-size:18px; }
-</style>
-</head>
+import random
+import time
 
-<body>
+# 四字熟語リスト（漢字, ひらがな）
+yojijukugo = [
+    ("一石二鳥", "いっせきにちょう"),
+    ("十人十色", "じゅうにんといろ"),
+    ("異口同音", "いくどうおん"),
+    ("温故知新", "おんこちしん"),
+    ("電光石火", "でんこうせっか"),
+    ("自業自得", "じごうじとく"),
+    ("七転八起", "しちてんはっき"),
+    ("以心伝心", "いしんでんしん")
+   （"切磋琢磨","せっさたくま")	
+　　("精励恪勤",	"せいれいかっきん")
+    ("自強不息","じきょうふそく")	
+    (一意専心","いちいせんしん")	
+    ("一心不乱","いっしんふらん")	
+    ("温故知新",	"おんこちしん")
+    ("一所懸命","いっしょけんめい")	
+    ("一朝一夕","いっちょういっせき")	
+    ("意味深長","いみしんちょう")
+　　("一日千秋",	"いちにちせんじゅう"）	
+   （"一念発起","いちねんほっき")	
+    ("進取果敢","しんしゅかかん")	
+    ("粉骨砕身,"ふんこつさいしん")	
+    ("一気呵成","いっきかせい")
+    ("初志貫徹","しょしかんてつ")	
+    ("百折不撓","ひゃくせつふとう")	
+    ("大器晩成","たいきばんせい)
+    ("万里一空","ばんりいっくう")	
+    ("出藍之誉","しゅつらんのほまれ")	
+　　("一字一句","いちじいっく")	
+]
 
-<h1>⌨️ TYPING MASTER</h1>
-<p id="stage">Stage 1</p>
-<p>Time: <span id="time"></span>s</p>
+print("=== 四字熟語タイピングゲーム ===")
+print("ひらがなで入力してください！")
+print("Enterでスタート")
+input()
 
-<div id="text"></div>
-<input id="input" autofocus />
+score = 0
+start_time = time.time()
 
-<p>
-Score: <span id="score">0</span> /
-Combo: <span id="combo">0</span>
-</p>
+for i in range(5):
+    question = random.choice(yojijukugo)
+    print(f"\n問題 {i+1}")
+    print("漢字:", question[0])
+    
+    answer = input("読みを入力: ")
+    
+    if answer == question[1]:
+        print("⭕ 正解！")
+        score += 1
+    else:
+        print(f"❌ 不正解！ 正解は {question[1]}")
 
-<div id="result"></div>
+end_time = time.time()
 
-<script>
-const wordPool = [
-  "javascript","function","variable","closure","prototype",
-  "async await","document object model","event listener",
-  "frontend development","typing speed test"
-];
+print("\n=== 結果 ===")
+print(f"正解数: {score}/5")
+print(f"かかった時間: {round(end_time - start_time, 2)}秒")
 
-let stage = 1;
-let time
+
